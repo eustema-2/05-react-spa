@@ -22,14 +22,14 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
-      handleLogin(formData);
+      await handleLogin(formData);
       // redirect to /admin
       navigate("/admin");
     } catch (error) {
-      setError(error.message);
+      setError(error.response.data);
     }
   }
 

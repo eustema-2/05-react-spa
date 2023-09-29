@@ -1,27 +1,49 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 import Input from "../components/Input";
 import Button from "../components/Button";
+import Alert from "../components/Alert";
 
 import useFields from "../hooks/useFields";
 
 export default function Login() {
   const [formData, handleField] = useFields({
+    name: "",
     email: "",
     password: "",
     passwordConfirm: "",
   });
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const [error, setError] = useState(null);
 
-    console.log(formData);
+  const { handleCreateAccount } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await handleCreateAccount(formData);
+      // redirect to /admin
+      navigate("/admin");
+    } catch (error) {
+      console.log(error);
+      setError(error.response.data);
+    }
   }
 
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-semibold text-center">Create new account</h1>
       <form className="flex flex-col gap-y-4" onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          name="name"
+          placeholder="Inserisci nome"
+          value={formData.name}
+          onChange={handleField}
+        />
         <Input
           type="email"
           name="email"
@@ -39,11 +61,12 @@ export default function Login() {
         <Input
           type="password"
           name="passwordConfirm"
-          placeholder="Inserisci password"
+          placeholder="Inserisci nuovamente la password"
           value={formData.passwordConfirm}
           onChange={handleField}
         />
         <Button>Create</Button>
+        {error && <Alert>{error}</Alert>}
       </form>
       <div className="text-center">
         or <br />
