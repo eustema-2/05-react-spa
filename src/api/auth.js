@@ -13,4 +13,8 @@ export default {
     const { data } = await client.post(`/request-reset`, payload);
     return data;
   },
+  async confirmResetPassword(payload) {
+    const { data } = await client.post(`/confirm-reset`, payload);
+    return data;
+  },
 };

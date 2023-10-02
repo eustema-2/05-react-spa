@@ -6,6 +6,7 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import RequestResetPassword from "./pages/RequestResetPassword";
+import ResetPassword from "./pages/ResetPassword";
 import PageNotFound from "./pages/PageNotFound";
 // Private Pages
 import HomePage from "./pages/HomePage";
@@ -26,6 +27,7 @@ export default function App() {
               path="/request-reset-password"
               element={<RequestResetPassword />}
             />
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Route>
 
           <Route
