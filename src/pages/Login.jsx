@@ -64,6 +64,13 @@ export default function Login() {
         >
           Create a new account
         </Link>
+        <br />
+        <Link
+          className="text-blue-700 underline underline-offset-2"
+          to="/request-reset-password"
+        >
+          Reset Password
+        </Link>
       </div>
     </div>
   );

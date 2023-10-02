@@ -5,6 +5,7 @@ import DashboardLayout from "./layouts/DashboardLayout";
 // Public Pages
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import RequestResetPassword from "./pages/RequestResetPassword";
 import PageNotFound from "./pages/PageNotFound";
 // Private Pages
 import HomePage from "./pages/HomePage";
@@ -21,6 +22,10 @@ export default function App() {
           <Route path="/" element={<AuthLayout />}>
             <Route index element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route
+              path="/request-reset-password"
+              element={<RequestResetPassword />}
+            />
           </Route>
 
           <Route

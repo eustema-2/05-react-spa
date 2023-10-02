@@ -9,4 +9,8 @@ export default {
     const { data } = await client.post(`/`, payload);
     return data;
   },
+  async requestResetPassword(payload) {
+    const { data } = await client.post(`/request-reset`, payload);
+    return data;
+  },
 };
